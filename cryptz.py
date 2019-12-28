@@ -13,6 +13,7 @@ import binhex
 import os
 import string
 import sys
+from random import choice
 
 try:
     from colorama import Fore, Style, init
@@ -25,23 +26,25 @@ except ImportError:
         "Install dependencies with: pip install -r requirements.txt"
     )
     sys.exit(1)
+    
+colorList = [Style.BRIGHT + Fore.RED, Style.BRIGHT + Fore.GREEN, Style.BRIGHT + Fore.YELLOW, Style.BRIGHT + Fore.BLUE, Fore.MAGENTA, Style.BRIGHT + Fore.CYAN, Style.BRIGHT + Fore.WHITE]
 
 
 init()
-print(
-    f"""{Fore.MAGENTA}
+print(choice(colorList) +
+f"""
 https://github.com/r2dr0dn
-{Fore.CYAN}
+{choice(colorList)}
  ####   #####   #   #  #####   #####  ######
 #    #  #    #   # #   #    #    #        #
 #       #    #    #    #    #    #       #
 #       #####     #    #####     #      #
 #    #  #   #     #    #         #     #
- ####   #    #    #    #         #    ######  {Fore.RED}v5.0{Style.RESET_ALL}
+ ####   #    #    #    #         #    ######  {choice(colorList)}v5.0
 
-{Fore.CYAN}Created by: {Fore.RED}r2dr0dn
-{Fore.YELLOW}Improved by: {Fore.RED}Haxys{Style.RESET_ALL}
-"""
+{choice(colorList)}Created by: {choice(colorList)}r2dr0dn
+{choice(colorList)}Improved by: {choice(colorList)}Haxys
+\n"""
 )
 
 # Global Variables
@@ -52,14 +55,14 @@ def get(datatype):
     """Request data with a prompt."""
     try:
         (color, message) = {
-            "plaintext": (Fore.GREEN, "Enter plaintext message"),
-            "encoded": (Fore.YELLOW, "Enter encoded message"),
-            "encrypted": (Fore.YELLOW, "Enter encrypted message"),
-            "filename": (Fore.MAGENTA, "Specify filename"),
-            "password": (Fore.RED, "Enter encryption password"),
+            "plaintext": (choice(colorList), "Enter plaintext message"),
+            "encoded": (choice(colorList), "Enter encoded message"),
+            "encrypted": (choice(colorList), "Enter encrypted message"),
+            "filename": (choice(colorList), "Specify filename"),
+            "password": (choice(colorList), "Enter encryption password"),
         }[datatype]
     except KeyError:
-        color = Fore.CYAN
+        color = choice(colorList)
         message = datatype
     return input(f"{color}{message}: {Style.RESET_ALL}").encode()
 
@@ -68,14 +71,14 @@ def show(datatype, output):
     """Reveal data with a prompt."""
     try:
         (color, message) = {
-            "filename": (Fore.MAGENTA, "Output saved as"),
-            "encoded": (Fore.YELLOW, "Encoded message"),
-            "encrypted": (Fore.YELLOW, "Encrypted message"),
-            "plaintext": (Fore.GREEN, "Plaintext"),
-            "password": (Fore.RED, "Encryption password"),
+            "filename": (choice(colorList), "Output saved as\n\n"),
+            "encoded": (choice(colorList), "Encoded message\n\n"),
+            "encrypted": (choice(colorList), "Encrypted message\n\n"),
+            "plaintext": (choice(colorList), "Plaintext\n\n"),
+            "password": (choice(colorList), "Encryption password\n\n"),
         }[datatype]
     except KeyError:
-        color = Fore.CYAN
+        color = choice(colorList)
         message = datatype
     print(f"{color}{message}:{Style.RESET_ALL}\n{output}")
 
@@ -83,7 +86,7 @@ def show(datatype, output):
 def random_key(length):
     """Generate a random key of the specified length."""
     chars = string.ascii_letters + string.digits
-    keypass = "".join(random.choice(chars) for x in range(length))
+    keypass = "".join(choice(chars) for x in range(length))
     return keypass
 
 
@@ -235,29 +238,28 @@ def main():
         while True:
             print(
                 "\n"
-                + Fore.CYAN
-                + "Choose from the following options, or press Ctrl-C to quit:"
+                + "Choose from the following options, or press Ctrl-C to quit:\n\n"
                 + Style.RESET_ALL
             )
             for index, option in enumerate(MENU_OPTIONS, 1):
                 print(f"{index}. {' ' if index < 10 else ''}"
                       f"{option.__doc__}")
-            choice = get("Selection")
+            choice = get("\n\nSelection")
             print()
             try:
                 MENU_OPTIONS[int(choice) - 1]()
             except IndexError:
-                print(Fore.RED + "Unknown option." + Style.RESET_ALL)
+                print(choice(colorList) + "Unknown option." + Style.RESET_ALL)
             except ValueError:
                 print(
-                    f"{Fore.RED}Invalid option."
+                    f"{choice(colorList)}Invalid option."
                     + "Enter the number of your selection."
                     + Style.RESET_ALL
                 )
     except KeyboardInterrupt:
         print(
             f"\n{Fore.RED}Program terminated. "
-            f"{Fore.WHITE}{Style.BRIGHT}Have a nice day!"
+            f"{choice(colorList)}Have a nice day!"
             f"{Style.RESET_ALL}"
         )
         sys.exit(1)
