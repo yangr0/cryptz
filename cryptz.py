@@ -4,7 +4,7 @@ Provides a number of encoders, decoders, encryptors and decryptors.
 
 Created By r2dr0dn.
 Improvements by Haxys.
-Updated 2019.12.04.
+Updated 2019.12.31.
 """
 
 import base64
@@ -23,7 +23,7 @@ try:
 except ImportError:
     print(
         "ERROR: Missing required libraries.\n"
-        "Install dependencies with: pip install -r requirements.txt"
+        "Install dependencies with: pip3 install -r requirements.txt"
     )
     sys.exit(1)
     
