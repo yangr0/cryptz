@@ -33,7 +33,7 @@ colorList = [Style.BRIGHT + Fore.RED, Style.BRIGHT + Fore.GREEN, Style.BRIGHT + 
 init()
 print(choice(colorList) +
 f"""
-https://github.com/r2dr0dn
+https://github.com/iinc0gnit0/cryptz
 {choice(colorList)}
  ####   #####   #   #  #####   #####  ######
 #    #  #    #   # #   #    #    #        #
@@ -42,7 +42,7 @@ https://github.com/r2dr0dn
 #    #  #   #     #    #         #     #
  ####   #    #    #    #         #    ######  {choice(colorList)}v5.0
 
-{choice(colorList)}Created by: {choice(colorList)}r2dr0dn
+{choice(colorList)}Created by: {choice(colorList)}r2dr0dn{choice(colorList)} and {choice(colorList)}inc0gnit0
 {choice(colorList)}Improved by: {choice(colorList)}Haxys
 \n"""
 )
